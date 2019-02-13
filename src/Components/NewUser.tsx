@@ -1,45 +1,34 @@
-import * as React from 'react';
 import axios from 'axios';
+import * as React from 'react';
 import { Link } from 'react-router-dom';
 
-export interface INewUserState<string> {
+export interface INewUserState {
   email: string;
   password: string;
-  username: string;
   phoneNumber: string;
+  username: string;
 }
 
+const updateState = <T extends string>(key: keyof INewUserState, value: T) => (
+  prevState: INewUserState
+): INewUserState => ({
+  ...prevState,
+  [key]: value
+});
+
 export class NewUser extends React.Component<{}, INewUserState> {
+  public state: INewUserState;
   constructor(props: any) {
     super(props);
     this.state = {
       email: '',
       password: '',
-      username: '',
-      phoneNumber: ''
+      phoneNumber: '',
+      username: ''
     }
   }
 
-  handleClick = (e: any) => {
-    e.preventDefault();
-    axios.post('http://localhost:5000/createUser', {
-      email: this.state.email,
-      password: this.state.password,
-      username: this.state.username,
-      phone_number: this.state.phoneNumber
-    }).then((res: any): any => {
-      localStorage.setItem('token', res.data)
-      console.log("Token", res.data)
-    })
-
-
-  };
-
-  handleChange = (event: any) => {
-    this.setState({[event.target.name]: event.target.value});
-  };
-
-  render() {
+  public render() {
     return (
       <form>
         Email: <input name='email' type='text' value={this.state.email} onChange={this.handleChange}/><br />
@@ -52,4 +41,23 @@ export class NewUser extends React.Component<{}, INewUserState> {
       </form>
     )
   }
+
+  private handleClick = (e: any) => {
+    e.preventDefault();
+    axios.post('http://localhost:5000/createUser', {
+      email: this.state.email,
+      password: this.state.password,
+      phone_number: this.state.phoneNumber,
+      username: this.state.username
+    }).then((res: any): any => {
+      localStorage.setItem('token', res.data);
+      console.log("Token", res.data)
+    })
+  };
+
+  private handleChange = (event: any) => {
+    this.setState(updateState(event.target.name, event.target.value));
+  };
+
+
 }

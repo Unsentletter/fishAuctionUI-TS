@@ -12,7 +12,7 @@ export class ItemCard extends React.Component<IItemCardProps> {
     super(props);
   }
 
-  render() {
+  public render() {
     console.log("Card PROPS", this.props);
     return (
       <div className='card horizontal'>

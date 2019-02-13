@@ -1,5 +1,5 @@
-import * as React from 'react';
 import axios from 'axios';
+import * as React from 'react';
 import { Link } from 'react-router-dom';
 
 export interface ILoginState {
@@ -7,8 +7,15 @@ export interface ILoginState {
   password: string;
 }
 
+const updateState = <T extends string>(key: keyof ILoginState, value: T) => (
+  prevState: ILoginState
+): ILoginState => ({
+  ...prevState,
+  [key]: value
+});
+
 export class Login extends React.Component<{}, ILoginState> {
-  state: ILoginState;
+  public state: ILoginState;
   constructor(props: any) {
     super(props);
     this.state = {
@@ -17,21 +24,7 @@ export class Login extends React.Component<{}, ILoginState> {
     }
   }
 
-  handleClick = () => {
-    axios.post('http://localhost:5000/login', {
-      email: this.state.email,
-      password: this.state.password
-    }).then((res: any) => {
-      localStorage.setItem('token', res.data);
-      console.log("LOGGED IN", res.data);
-    })
-  };
-
-  handleChange = (event: any) => {
-    this.setState({[event.target.name]: event.target.value});
-  };
-
-  render() {
+  public render() {
     return (
       <form>
         Email: <input name='email' type='text' value={this.state.email} onChange={this.handleChange}/><br />
@@ -42,4 +35,18 @@ export class Login extends React.Component<{}, ILoginState> {
       </form>
     )
   }
+
+  private handleClick = () => {
+    axios.post('http://localhost:5000/login', {
+      email: this.state.email,
+      password: this.state.password
+    }).then((res: any) => {
+      localStorage.setItem('token', res.data);
+      console.log("LOGGED IN", res.data);
+    })
+  };
+
+  private handleChange = (event: any) => {
+    this.setState(updateState(event.target.name, event.target.value));
+  };
 }

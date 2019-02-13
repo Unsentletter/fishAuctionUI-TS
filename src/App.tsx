@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { BrowserRouter, Route, Redirect, RouteProps } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, RouteProps } from 'react-router-dom';
 
+import { ItemList } from './Components/ItemList';
+import { Login } from './Components/Login';
 import { NewUser } from './Components/NewUser';
 import { UserProfile } from './Components/UserProfile';
-import { Login } from './Components/Login';
-import { ItemList } from './Components/ItemList';
 // import { ImageUploadInput } from './Components/ImageUploadInput'
 
 function isAuthenticated() {
@@ -24,10 +24,11 @@ export interface IPrivateRouteProps extends RouteProps {
 
 const PrivateRoute = (props: IPrivateRouteProps) => {
   const { component: Component, ...rest } = props;
-  console.log("isAuthed", isAuthenticated());
+  // console.log("isAuthed", isAuthenticated());
   return (
     <Route
       {...rest}
+      // tslint:disable-next-line jsx-no-lambda
       render={routeProps =>
         isAuthenticated() ? (
           <Component {...routeProps} />
@@ -50,9 +51,9 @@ class App extends React.Component {
       <div>
         <BrowserRouter>
           <div>
-            <Route exact path='/items_for_sale' component={ItemList}/>
-            <Route exact path='/login' component={Login}/>
-            <Route exact path='/create_user' component={NewUser}/>
+            <Route path='/items_for_sale' component={ItemList}/>
+            <Route path='/login' component={Login}/>
+            <Route path='/create_user' component={NewUser}/>
             {/*<Route path='/upload_image' component={ImageUploadInput}/>*/}
             <PrivateRoute path='/user_profile' component={UserProfile}/>
             {/*<Redirect path='/logout' to='/login' innerRef={logout()}/>*/}

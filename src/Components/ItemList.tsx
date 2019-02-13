@@ -1,5 +1,5 @@
-import * as React from 'react';
 import axios from "axios/index";
+import * as React from 'react';
 
 import { ItemCard } from './ItemCard/ItemCard';
 
@@ -8,6 +8,7 @@ export interface IItemListState {
 }
 
 export class ItemList extends React.Component<{}, IItemListState> {
+  public state: IItemListState;
   constructor(props: any) {
     super(props);
     this.state = {
@@ -15,7 +16,7 @@ export class ItemList extends React.Component<{}, IItemListState> {
     }
   }
 
-  componentDidMount() {
+  public componentDidMount() {
     axios.get('http://localhost:5000/get-items')
       .then((data) => {
         console.log(data.data)
@@ -30,15 +31,15 @@ export class ItemList extends React.Component<{}, IItemListState> {
   //   console.log(this.state.items)
   // }
 
-  render() {
+  public render() {
     return (
       <div>
-        {this.state.items.map((item: {[key :string]: string}) => {
+        {this.state.items.map((item: {[key :string]: string}, i: number) => {
           return (
             <ItemCard
               name={item.name}
               price={item.price}
-
+              key={i}
             />
           )
         })}
