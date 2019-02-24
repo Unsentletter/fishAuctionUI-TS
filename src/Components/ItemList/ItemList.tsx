@@ -1,7 +1,7 @@
 import axios from "axios/index";
 import * as React from 'react';
 
-import { ItemCard } from './ItemCard/ItemCard';
+import { ItemCard } from '../ItemCard/ItemCard';
 
 export interface IItemListState {
   items: any;

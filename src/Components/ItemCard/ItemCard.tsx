@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import './styles.scss';
+import './index.css';
 
 export interface IItemCardProps {
   name: string;
@@ -13,7 +13,6 @@ export class ItemCard extends React.Component<IItemCardProps> {
   }
 
   public render() {
-    console.log("Card PROPS", this.props);
     return (
       <div className='card horizontal'>
         <div className="card-image">

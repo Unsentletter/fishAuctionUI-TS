@@ -8,6 +8,10 @@
     ]
   },
   "rules": {
+    "no-console": false,
+    "member-ordering" : false
+  },
+  "jsRules": {
     "no-console": false
   }
 }

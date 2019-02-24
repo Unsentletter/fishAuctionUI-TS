@@ -1,7 +1,7 @@
 // import * as React from "react";
 // import * as Dropzone from "dropzone";
 //
-// // import * as styles from "./styles.scss";
+// // import * as styles from "./index.css";
 //
 // export interface IFileUploadProps {
 //   uploadUrl: string;
