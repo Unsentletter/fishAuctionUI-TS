@@ -2,6 +2,8 @@ import axios from 'axios';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
+import { Button } from '../Button';
+
 export interface INewUserState {
   email: string;
   password: string;
@@ -53,7 +55,7 @@ export class NewUser extends React.Component<{}, INewUserState> {
         Username: <input name='username' type='text' value={this.state.username} onChange={this.handleChange}/><br />
         Phone number: <input name='phoneNumber' type='text' value={this.state.phoneNumber} onChange={this.handleChange}/><br />
         <Link to={'/user_profile'} innerRef={this.handleClick}>
-          <button>Submit</button>
+          <Button label={'Submit'}/>
         </Link>
       </form>
     )

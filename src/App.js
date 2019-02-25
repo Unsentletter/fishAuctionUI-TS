@@ -9,7 +9,7 @@ import {
 
 import { ItemList } from './Components/ItemList/ItemList';
 import { Login } from './Components/Login';
-import { NewUser } from './Components/NewUser/NewUser';
+import { NewUser } from './Components/NewUser/index';
 import { UserProfile } from './Components/UserProfile/UserProfile';
 // import { ImageUploadInput } from './Components/ImageUploadInput'
 

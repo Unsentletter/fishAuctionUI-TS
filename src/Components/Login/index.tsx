@@ -2,6 +2,8 @@ import axios from 'axios';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
+import { Button } from '../Button'
+
 export interface ILoginState {
   email: string;
   password: string;
@@ -48,7 +50,7 @@ export class Login extends React.Component<{}, ILoginState> {
           </div>
           Password: <input name='password' type='password' value={this.state.password} onChange={this.handleChange}/><br />
           <Link to={'/'} innerRef={this.handleClick}>
-            <button className="btn">Submit</button>
+            <Button label={"Submit"} />
           </Link>
         </form>
       )
