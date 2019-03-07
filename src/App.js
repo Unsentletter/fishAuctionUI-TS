@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Redirect } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  RouteProps,
+  Switch
+} from 'react-router-dom';
 
-// import NewUser from './Components/NewUser';
-// import UserProfile from './Components/UserProfile';
+import { ItemList } from './Components/ItemList';
 import { Login } from './Components/Login';
-// import { ItemList } from './Components/ItemList';
-// import { ImageUploadInput } from './Components/ImageUploadInput/index'
+import { NewUser } from './Components/NewUser/index';
+// import { UserProfile } from './Components/UserProfile/UserProfile';
+// import { ImageUploadInput } from './Components/ImageUploadInput'
 
 function isAuthenticated() {
   console.log("AUTH", localStorage);
@@ -17,42 +23,42 @@ function isAuthenticated() {
 //   return localStorage.removeItem('token');
 // }
 
-// const PrivateRoute = ({ Component, ...rest }) => {
-//   console.log("isAuthed", isAuthenticated());
-//   return (
-//     <Route
-//       {...rest}
-//       render={props =>
-//         isAuthenticated() ? (
-//           <Component {...props} />
-//         ) : (
-//           <Redirect
-//             to={{
-//               pathname: "/items_for_sale",
-//               state: { from: props.location }
-//             }}
-//           />
-//         )
-//       }
-//     />
-//   );
-// };
+const PrivateRoute = (props) => {
+  const { Component, ...rest } = props;
+  console.log("isAuthed", isAuthenticated());
+  return (
+    <Route
+      {...rest}
+      render={routeProps =>
+        isAuthenticated() ? (
+          <Component {...routeProps} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/login",
+              state: { from: routeProps.location }
+            }}
+          />
+        )
+      }
+    />
+  );
+};
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <BrowserRouter>
-          <div>
-            {/*<Route exact path='/items_for_sale' component={ItemList}/>*/}
-            <Route exact path='/login' component={Login}/>
-            {/*<Route exact path='/create_user' component={NewUser}/>*/}
-            {/*<Route path='/upload_image' component={ImageUploadInput}/>*/}
-            {/*<PrivateRoute path='/user_profile' component={UserProfile}/>*/}
-            {/*<Redirect path='/logout' to='/login' innerRef={logout()}/>*/}
-          </div>
-        </BrowserRouter>
-      </div>
+      <Router>
+        <Switch>
+          {/*<Route exact path='/' component={ItemList}/>*/}
+          <Route exact path='/login' component={Login}/>
+          <Route
+            exact path='/create_user' component={NewUser}/>
+          {/*<Route path='/upload_image' component={ImageUploadInput}/>*/}
+          {/*<PrivateRoute exact path='/user_profile' component={UserProfile}/>*/}
+          {/*<Redirect exact path='/logout' to='/login' innerRef={logout()}/>*/}
+        </Switch>
+      </Router>
     )
   };
 }
