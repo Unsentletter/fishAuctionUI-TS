@@ -21,8 +21,17 @@ export class Login extends Component {
     })
   };
 
-  handleChange = event => {
-    this.setState({[event.target.name]: event.target.value});
+  handleChange = (event) => {
+    switch(event.target.name) {
+      case 'email':
+        this.setState({email: event.target.value});
+        break;
+      case 'password':
+        this.setState({password: event.target.value});
+        break;
+      default:
+        throw new Error('Only email and password can be updated');
+    }
   };
 
   render() {
