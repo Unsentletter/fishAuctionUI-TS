@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 
 import { Button } from '../Button'
 
+import './index.scss';
+
 export class NewUser extends Component {
   constructor(props) {
   super(props);
@@ -50,15 +52,19 @@ export class NewUser extends Component {
 
   render() {
     return (
-      <form>
-      Email: <input name='email' type='text' value={this.state.email} onChange={this.handleChange}/><br />
-      Password: <input name='password' type='text' value={this.state.password} onChange={this.handleChange}/><br />
-      Username: <input name='username' type='text' value={this.state.username} onChange={this.handleChange}/><br />
-      Phone number: <input name='phoneNumber' type='text' value={this.state.phoneNumber} onChange={this.handleChange}/><br />
-        <Link to={'/user_profile'} innerRef={this.handleClick}>
-          <Button label="Submit" />
-        </Link>
-      </form>
+      <div className='outer'>
+        <div className='create'>
+          <form>
+          Email: <input name='email' type='text' value={this.state.email} onChange={this.handleChange}/><br />
+          Password: <input name='password' type='text' value={this.state.password} onChange={this.handleChange}/><br />
+          Username: <input name='username' type='text' value={this.state.username} onChange={this.handleChange}/><br />
+          Phone number: <input name='phoneNumber' type='text' value={this.state.phoneNumber} onChange={this.handleChange}/><br />
+            <Link to={'/user_profile'} innerRef={this.handleClick}>
+              <Button label="Submit" />
+            </Link>
+          </form>
+        </div>
+      </div>
     )
   }
 }
