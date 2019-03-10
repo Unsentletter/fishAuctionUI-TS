@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+import './index.scss';
+
 export class Login extends Component {
   constructor(props) {
     super(props, null, null);
@@ -36,13 +38,17 @@ export class Login extends Component {
 
   render() {
     return (
-      <form>
-        Email: <input name='email' type='text' value={this.state.email} onChange={this.handleChange}/><br />
-        Password: <input name='password' type='text' value={this.state.password} onChange={this.handleChange}/><br />
-        <Link to={'/user_profile'} innerRef={this.handleClick}>
-          <button className="btn">Submit</button>
-        </Link>
-      </form>
+      <div className='outer'>
+        <div className='login'>
+          <form className='form'>
+            Email: <input name='email' type='text' value={this.state.email} onChange={this.handleChange}/><br />
+            Password: <input name='password' type='text' value={this.state.password} onChange={this.handleChange}/><br />
+            <Link to={'/user_profile'} innerRef={this.handleClick}>
+              <button className="btn">Submit</button>
+            </Link>
+          </form>
+        </div>
+      </div>
     )
   }
 }
