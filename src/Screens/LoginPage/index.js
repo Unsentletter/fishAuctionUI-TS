@@ -13,6 +13,8 @@ export class Login extends Component {
     }
   }
 
+  // TODO: Handle click without data entered. Dont do anything, maybe use validate.js to validate and disable button until complete
+
   handleClick = () => {
     axios.post('http://localhost:5000/login', {
       email: this.state.email,
