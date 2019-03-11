@@ -1,0 +1,25 @@
+.card-text {
+  padding: 10px;
+}
+
+.card-top-line {
+  display: flex;
+  width: 100%;
+}
+
+.name {
+  flex-grow: 9;
+}
+
+.price {
+  flex-grow: 1;
+}
+
+.name-line {
+  display: flex;
+}
+
+.description {
+  padding-top: 4px;
+  font-size: 12px;
+}
