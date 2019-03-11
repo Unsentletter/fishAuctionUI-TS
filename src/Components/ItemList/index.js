@@ -18,13 +18,6 @@ export class ItemList extends Component {
         this.setState({items: data.data})
       })
   }
-  //
-  // listItems() {
-  //   console.log(111,this.state);
-  //   {)}
-  //
-  //   console.log(this.state.items)
-  // }
 
   render() {
     return (
