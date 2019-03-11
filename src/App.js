@@ -50,17 +50,21 @@ const PrivateRoute = (props) => {
 class App extends Component {
   render() {
     return (
-      <Router>
-        <Switch>
-          <Route exact path='/' component={ItemList}/>
-          <Route exact path='/login' component={Login}/>
-          <Route
-            exact path='/create_user' component={NewUser}/>
-          {/*<Route path='/upload_image' component={ImageUploadInput}/>*/}
-          {/*<PrivateRoute exact path='/user_profile' component={UserProfile}/>*/}
-          {/*<Redirect exact path='/logout' to='/login' innerRef={logout()}/>*/}
-        </Switch>
-      </Router>
+      <div>
+        <Header />
+        <Router>
+          <Switch>
+            <Route exact path='/' component={SalePage}/>
+            <Route exact path='/login' component={Login}/>
+            <Route exact path='/create_user' component={NewUser}/>
+            <Route exact path='/item_page' component={ItemPage}/>
+            {/*<Route path='/upload_image' component={ImageUploadInput}/>*/}
+            {/*HACK - needs to be a PrivateRoute*/}
+            <Route exact path='/user_profile' component={UserProfile}/>
+            {/*<Redirect exact path='/logout' to='/login' innerRef={logout()}/>*/}
+          </Switch>
+        </Router>
+      </div>
     )
   };
 }
