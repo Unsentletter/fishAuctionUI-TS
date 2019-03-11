@@ -7,10 +7,12 @@ import {
   Switch
 } from 'react-router-dom';
 
-import { ItemList } from './Components/ItemList';
-import { Login } from './Components/Login';
-import { NewUser } from './Components/NewUser/index';
-// import { UserProfile } from './Components/UserProfile/UserProfile';
+import { Header } from './Components/Header'
+import { SalePage } from './Screens/SalePage';
+import { Login } from './Screens/LoginPage';
+import { NewUser } from './Screens/NewUserPage';
+import { ItemPage } from './Screens/ItemPage';
+import { UserProfile } from './Screens/UserProfilePage';
 // import { ImageUploadInput } from './Components/ImageUploadInput'
 
 function isAuthenticated() {
