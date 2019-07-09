@@ -6,7 +6,7 @@ import './index.scss';
 export const ItemCard = props => {
   return (
     <Link to={'/item_page'}>
-      <div className='card horizontal'>
+      <div className='card small horizontal'>
         <div className="card-image">
           <img src="../../../public/guppy.jpg" alt="This is a photo"/>
         </div>

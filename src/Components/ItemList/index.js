@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from "axios";
 
+import './index.scss'
+
 import { ItemCard } from '../ItemCard';
 
 export class ItemList extends Component {
@@ -21,7 +23,7 @@ export class ItemList extends Component {
 
   render() {
     return (
-      <div>
+      <div className='item-list'>
         {this.state.items.map((item, i) => {
           return (
             <ItemCard

@@ -12,18 +12,16 @@ export class NewUser extends Component {
     this.state = {
       email: '',
       password: '',
-      phoneNumber: '',
+      phone_number: '',
       username: ''
     }
   }
 
 
   handleClick = (e) => {
+    const { email, password, phone_number, username} = this.state;
     axios.post('http://localhost:5000/createUser', {
-      email: this.state.email,
-      password: this.state.password,
-      phone_number: this.state.phoneNumber,
-      username: this.state.username
+      email, password, phone_number, username
     }).then((res) => {
       localStorage.setItem('token', res.data);
       console.log("Token", res.data)
@@ -43,7 +41,7 @@ export class NewUser extends Component {
         this.setState({ username: value });
         break;
       case 'phoneNumber':
-        this.setState({ phoneNumber: value });
+        this.setState({ phone_number: value });
         break;
       default:
         throw new Error('Incorrect data passed');
@@ -58,9 +56,9 @@ export class NewUser extends Component {
           Email: <input name='email' type='text' value={this.state.email} onChange={this.handleChange}/><br />
           Password: <input name='password' type='text' value={this.state.password} onChange={this.handleChange}/><br />
           Username: <input name='username' type='text' value={this.state.username} onChange={this.handleChange}/><br />
-          Phone number: <input name='phoneNumber' type='text' value={this.state.phoneNumber} onChange={this.handleChange}/><br />
+          Phone number: <input name='phoneNumber' type='text' value={this.state.phone_number} onChange={this.handleChange}/><br />
             <Link to={'/user_profile'} innerRef={this.handleClick}>
-              <Button label="Submit" />
+              <Button label='Submit' />
             </Link>
           </form>
         </div>

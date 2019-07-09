@@ -13,6 +13,7 @@ import { Login } from './Screens/LoginPage';
 import { NewUser } from './Screens/NewUserPage';
 import { ItemPage } from './Screens/ItemPage';
 import { UserProfile } from './Screens/UserProfilePage';
+import { AddFish } from './Screens/AddFish';
 // import { ImageUploadInput } from './Components/ImageUploadInput'
 
 function isAuthenticated() {
@@ -54,7 +55,7 @@ class App extends Component {
         <Header />
         <Router>
           <Switch>
-            <Route exact path='/' component={SalePage}/>
+            <Route exact path='/' component={AddFish}/>
             <Route exact path='/login' component={Login}/>
             <Route exact path='/create_user' component={NewUser}/>
             <Route exact path='/item_page' component={ItemPage}/>
