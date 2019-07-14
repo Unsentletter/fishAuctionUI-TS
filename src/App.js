@@ -1,19 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   BrowserRouter as Router,
   Redirect,
   Route,
   RouteProps,
   Switch
-} from 'react-router-dom';
+} from "react-router-dom";
 
-import { Header } from './Components/Header'
-import { SalePage } from './Screens/SalePage';
-import { Login } from './Screens/LoginPage';
-import { NewUser } from './Screens/NewUserPage';
-import { ItemPage } from './Screens/ItemPage';
-import { UserProfile } from './Screens/UserProfilePage';
-import { AddFish } from './Screens/AddFish';
+import { Header } from "./Components/Header";
+import { SalePage } from "./Screens/SalePage";
+import { Login } from "./Screens/LoginPage";
+import { NewUser } from "./Screens/NewUserPage";
+import { ItemPage } from "./Screens/ItemPage";
+import { UserProfile } from "./Screens/UserProfilePage";
+import { AddFish } from "./Screens/AddFish";
+import { FishProfile } from "./Screens/FishProfile";
 // import { ImageUploadInput } from './Components/ImageUploadInput'
 
 function isAuthenticated() {
@@ -26,7 +27,7 @@ function isAuthenticated() {
 //   return localStorage.removeItem('token');
 // }
 
-const PrivateRoute = (props) => {
+const PrivateRoute = props => {
   const { Component, ...rest } = props;
   console.log("isAuthed", isAuthenticated());
   return (
@@ -55,19 +56,20 @@ class App extends Component {
         <Header />
         <Router>
           <Switch>
-            <Route exact path='/' component={AddFish}/>
-            <Route exact path='/login' component={Login}/>
-            <Route exact path='/create_user' component={NewUser}/>
-            <Route exact path='/item_page' component={ItemPage}/>
+            <Route exact path="/" component={AddFish} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/create_user" component={NewUser} />
+            <Route exact path="/item_page" component={ItemPage} />
             {/*<Route path='/upload_image' component={ImageUploadInput}/>*/}
             {/*HACK - needs to be a PrivateRoute*/}
-            <Route exact path='/user_profile' component={UserProfile}/>
+            <Route exact path="/user_profile" component={UserProfile} />
             {/*<Redirect exact path='/logout' to='/login' innerRef={logout()}/>*/}
+            <Route exact path="/fish-profile" component={FishProfile} />
           </Switch>
         </Router>
       </div>
-    )
-  };
+    );
+  }
 }
 
 export default App;
