@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import RequireAuth from "../../Components/requireAuth";
 import { connect } from "react-redux";
 
 class UserProfile extends Component {
@@ -7,8 +8,4 @@ class UserProfile extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return { user: state.user };
-};
-
-export default connect(mapStateToProps)(UserProfile);
+export default RequireAuth(UserProfile);
