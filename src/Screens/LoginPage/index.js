@@ -1,53 +1,48 @@
-import React, { Component } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { logIn } from "../../Actions/userActions";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import * as actions from '../../actions'
 
-import "./index.scss";
+import './index.scss'
 
-export class Login extends Component {
+export class Login extends React.Component {
   constructor(props) {
-    super(props, null, null);
+    super(props, null, null)
     this.state = {
-      email: "",
-      password: ""
-    };
+      email: '',
+      password: '',
+    }
   }
 
   // TODO: Handle click without data entered. Dont do anything, maybe use validate.js to validate and disable button until complete
 
-  handleClick = () => {
-    axios
-      .post("http://localhost:5000/login", {
-        email: this.state.email,
-        password: this.state.password
-      })
-      .then(res => {
-        localStorage.setItem("token", res.data);
-        console.log("LOGGED IN", res.data);
-      });
-  };
+  handleClick = e => {
+    const { email, password } = this.state
+    e.preventDefault()
+    this.props.login({ email, password }, () => {
+      this.props.history.push('/user_profile')
+    })
+  }
 
   handleChange = event => {
     switch (event.target.name) {
-      case "email":
-        this.setState({ email: event.target.value });
-        break;
-      case "password":
-        this.setState({ password: event.target.value });
-        break;
+      case 'email':
+        this.setState({ email: event.target.value })
+        break
+      case 'password':
+        this.setState({ password: event.target.value })
+        break
       default:
-        throw new Error("Only email and password can be updated");
+        throw new Error('Only email and password can be updated')
     }
-  };
+  }
 
   render() {
     return (
       <div className="outer">
         <div className="login">
           <form className="form">
-            Email:{" "}
+            Email:{' '}
             <input
               name="email"
               type="text"
@@ -55,7 +50,7 @@ export class Login extends Component {
               onChange={this.handleChange}
             />
             <br />
-            Password:{" "}
+            Password:{' '}
             <input
               name="password"
               type="text"
@@ -63,17 +58,17 @@ export class Login extends Component {
               onChange={this.handleChange}
             />
             <br />
-            <Link to={"/user_profile"} innerRef={this.handleClick}>
-              <button className="btn">Submit</button>
-            </Link>
+            <button onClick={this.handleClick} className="btn">
+              Submit
+            </button>
           </form>
         </div>
       </div>
-    );
+    )
   }
 }
 
 export default connect(
   null,
-  { logIn }
-)(Login);
+  actions
+)(Login)

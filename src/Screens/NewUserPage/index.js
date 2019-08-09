@@ -1,55 +1,53 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import * as actions from "../../actions";
+import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import * as actions from '../../actions'
 
-import { Button } from "../../Components/Button/index";
+import { Button } from '../../Components/Button/index'
 
-import "./index.scss";
+import './index.scss'
 
 export class NewUser extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      email: "",
-      password: "",
-      username: ""
-    };
+      email: '',
+      password: '',
+      username: '',
+    }
   }
 
   handleClick = e => {
-    const { email, password, username } = this.state;
-    e.preventDefault();
-    console.log("PROPS", this.props);
-
+    const { email, password, username } = this.state
+    e.preventDefault()
     this.props.signup({ email, password, username }, () => {
-      this.props.history.push("/user_profile");
-    });
-  };
+      this.props.history.push('/user_profile')
+    })
+  }
 
   handleChange = event => {
-    const { value } = event.target;
+    const { value } = event.target
     switch (event.target.name) {
-      case "email":
-        this.setState({ email: value });
-        break;
-      case "password":
-        this.setState({ password: value });
-        break;
-      case "username":
-        this.setState({ username: value });
-        break;
+      case 'email':
+        this.setState({ email: value })
+        break
+      case 'password':
+        this.setState({ password: value })
+        break
+      case 'username':
+        this.setState({ username: value })
+        break
       default:
-        throw new Error("Incorrect data passed");
+        throw new Error('Incorrect data passed')
     }
-  };
+  }
 
   render() {
     return (
       <div className="outer">
         <div className="create">
           <form>
-            Email:{" "}
+            Email:{' '}
             <input
               name="email"
               type="text"
@@ -57,7 +55,7 @@ export class NewUser extends React.Component {
               onChange={this.handleChange}
             />
             <br />
-            Password:{" "}
+            Password:{' '}
             <input
               name="password"
               type="text"
@@ -65,7 +63,7 @@ export class NewUser extends React.Component {
               onChange={this.handleChange}
             />
             <br />
-            Username:{" "}
+            Username:{' '}
             <input
               name="username"
               type="text"
@@ -81,11 +79,11 @@ export class NewUser extends React.Component {
           </form>
         </div>
       </div>
-    );
+    )
   }
 }
 
 export default connect(
   null,
   actions
-)(NewUser);
+)(NewUser)
