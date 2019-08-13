@@ -12,20 +12,25 @@ export class ItemList extends React.Component {
   }
 
   async componentDidMount() {
-    console.log('PROPS', await this.props.getFishForSale())
+    this.props.getFishForSale()
   }
 
   render() {
-    return <div className="item-list" />
+    return (
+      <div className="item-list">
+        {this.props.fishForSale.map((fish, index) => {
+          return <ItemCard name={fish.name} price={fish.price} key={index} />
+        })}
+      </div>
+    )
   }
 }
 
 function mapStateToProps(state) {
-  console.log('STATE', state.forSale)
-  return { fishForSale: state.forSale }
+  return { fishForSale: state.forSale.fishForSale }
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   { getFishForSale }
 )(ItemList)

@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import { Button } from "../../Components/Button";
-import axios from "axios";
+import React, { Component } from 'react'
+import { Button } from '../../Components/Button'
+import axios from 'axios'
 
 export class AddFish extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      itemTitle: "",
-      price: "",
-      location: "",
-      description: "",
-      photos: "",
-      species: ""
-    };
+      itemTitle: '',
+      price: '',
+      location: '',
+      description: '',
+      photos: '',
+      species: '',
+    }
   }
 
   handleClick = event => {
@@ -22,59 +22,55 @@ export class AddFish extends Component {
       location,
       description,
       photos,
-      species
-    } = this.state;
-    event.preventDefault();
-    console.log("SUBMIT BUTTON CLICKED", this.state);
+      species,
+    } = this.state
+    event.preventDefault()
     axios
       .post(
-        "http://localhost:5000/post-item",
+        'http://localhost:5000/post-item',
         {
           itemName: itemTitle,
           price,
           location,
           description,
-          species
+          species,
         },
         {
           headers: {
-            "Content-Type": "application/json",
-            token: localStorage.getItem("token")
-          }
+            'Content-Type': 'application/json',
+            token: localStorage.getItem('token'),
+          },
         }
       )
-      .then(res => {
-        console.log(1111111, res);
-      })
       .catch(err => {
-        console.log("ERR", err);
-      });
-  };
+        console.log('ERR', err)
+      })
+  }
 
   handleChange = event => {
-    const { value } = event.target;
+    const { value } = event.target
     switch (event.target.name) {
-      case "itemTitle":
-        this.setState({ itemTitle: value });
-        break;
-      case "price":
-        this.setState({ price: value });
-        break;
-      case "location":
-        this.setState({ location: value });
-        break;
-      case "description":
-        this.setState({ description: value });
-        break;
-      case "species":
-        this.setState({ species: value });
-      case "photos":
-        this.setState({ photos: value });
-        break;
+      case 'itemTitle':
+        this.setState({ itemTitle: value })
+        break
+      case 'price':
+        this.setState({ price: value })
+        break
+      case 'location':
+        this.setState({ location: value })
+        break
+      case 'description':
+        this.setState({ description: value })
+        break
+      case 'species':
+        this.setState({ species: value })
+      case 'photos':
+        this.setState({ photos: value })
+        break
       default:
-        throw new Error("Incorrect data passed");
+        throw new Error('Incorrect data passed')
     }
-  };
+  }
 
   render() {
     return (
@@ -123,7 +119,7 @@ export class AddFish extends Component {
           </Button>
         </form>
       </div>
-    );
+    )
   }
 }
 
