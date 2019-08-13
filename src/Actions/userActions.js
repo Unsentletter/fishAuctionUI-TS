@@ -1,29 +1,52 @@
-export const userActions = {
-  signIn,
-  logIn,
-  logOut
-};
+import axios from 'axios'
 
-function signIn() {
-  return {
-    type: "SIGN_IN"
-  };
+import { AUTH_USER } from './types'
+
+export const signup = (
+  { email, password, username },
+  callback
+) => async dispatch => {
+  try {
+    const response = await axios.post(
+      'http://localhost:5000/createUser',
+      {
+        email,
+        password,
+        username,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    )
+    dispatch({ type: AUTH_USER, payload: response.data })
+    localStorage.setItem('token', response.data)
+    callback()
+  } catch (e) {
+    console.log('CREATE USER ERROR', e)
+  }
 }
 
-export function logIn(email, password) {
-  axios
-    .post("http://localhost:5000/login", {
+export const login = ({ email, password }, callback) => async dispatch => {
+  try {
+    const response = await axios.post('http://localhost:5000/login', {
       email,
-      password
+      password,
     })
-    .then(res => {
-      localStorage.setItem("token", res.data);
-      console.log("LOGGED IN", res.data);
-    });
+    dispatch({ type: AUTH_USER, payload: response.data })
+    localStorage.setItem('token', response.data)
+    callback()
+  } catch (e) {
+    console.log('LOGIN ERROR', e)
+  }
 }
 
-function logOut() {
+export const signout = () => {
+  localStorage.removeItem('token')
+
   return {
-    type: "LOG_OUT"
-  };
+    type: AUTH_USER,
+    payload: '',
+  }
 }

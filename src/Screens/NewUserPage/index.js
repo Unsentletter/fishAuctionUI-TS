@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
 import { connect } from 'react-redux'
-import * as actions from '../../actions'
+import * as actions from '../../Actions/userActions'
 
 import { Button } from '../../Components/Button/index'
 
@@ -71,7 +70,7 @@ export class NewUser extends React.Component {
               onChange={this.handleChange}
             />
             <br />
-            <button
+            <Button
               className="btn waves-effect waves-light"
               label="Submit"
               onClick={this.handleClick}

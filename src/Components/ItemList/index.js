@@ -1,39 +1,31 @@
-import React, { Component } from 'react';
-import axios from "axios";
+import React from 'react'
+import { connect } from 'react-redux'
+import { getFishForSale } from '../../Actions/fishSaleActions'
 
 import './index.scss'
 
-import { ItemCard } from '../ItemCard';
+import { ItemCard } from '../ItemCard'
 
-export class ItemList extends Component {
+export class ItemList extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = {
-      items: []
-    }
+    super(props)
   }
 
-  componentDidMount() {
-    axios.get('http://localhost:5000/get-items')
-      .then((data) => {
-        console.log(data.data)
-        this.setState({items: data.data})
-      })
+  async componentDidMount() {
+    console.log('PROPS', await this.props.getFishForSale())
   }
 
   render() {
-    return (
-      <div className='item-list'>
-        {this.state.items.map((item, i) => {
-          return (
-            <ItemCard
-              name={item.name}
-              price={item.price}
-              key={i}
-            />
-          )
-        })}
-      </div>
-    )
+    return <div className="item-list" />
   }
 }
+
+function mapStateToProps(state) {
+  console.log('STATE', state.forSale)
+  return { fishForSale: state.forSale }
+}
+
+export default connect(
+  null,
+  { getFishForSale }
+)(ItemList)

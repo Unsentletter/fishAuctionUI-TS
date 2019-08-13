@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import * as actions from '../../Actions'
+import * as actions from '../../Actions/userActions'
 
 class Signout extends React.Component {
   componentDidMount() {
