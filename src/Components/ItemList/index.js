@@ -18,8 +18,18 @@ export class ItemList extends React.Component {
   render() {
     return (
       <div className="item-list">
-        {this.props.fishForSale.map((fish, index) => {
-          return <ItemCard name={fish.name} price={fish.price} key={index} />
+        {this.props.fishForSale.reverse().map((fish, index) => {
+          console.log(fish)
+          return (
+            <ItemCard
+              name={fish.name}
+              price={fish.price}
+              key={index}
+              description={fish.description}
+              location={fish.location}
+              timePosted={fish.timePosted}
+            />
+          )
         })}
       </div>
     )
