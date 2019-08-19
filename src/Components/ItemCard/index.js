@@ -17,8 +17,8 @@ export const ItemCard = props => {
               <div className="price">{props.price}</div>
             </div>
             <div className="name-line">
-              <div>Poster name, </div>
-              <div>{props.location}</div>
+              <div>Poster name,</div>
+              <div> {props.location}</div>
             </div>
             <div>{props.timePosted}</div>
             <div className="description">{props.description}</div>
