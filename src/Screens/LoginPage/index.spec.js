@@ -1,54 +1,41 @@
-import React from 'react'
-import { shallow } from 'enzyme'
-import Login from './index'
+import React from 'react';
+import { shallow } from 'enzyme';
+import { Login } from './index';
 
-describe('Test case for logging in', () => {
-  let wrapper
-
-  test('username check', () => {
-    wrapper = shallow(<Login />)
-    wrapper.find('input[type="text"]').simulate('change', {
-      target: { name: 'username', value: 'krishankantsinghal' },
-    })
-    expect(wrapper.state('username')).toEqual('krishankantsinghal')
-  })
-  // it('password check', () => {
-  //   wrapper = shallow(<Login />)
-  //   wrapper
-  //     .find('input[type="password"]')
-  //     .simulate('change', {
-  //       target: { name: 'password', value: 'krishankant123' },
-  //     })
-  //   expect(wrapper.state('password')).toEqual('krishankant123')
-  // })
-  // it('login check with right data', () => {
-  //   wrapper = shallow(<Login />)
-  //   wrapper
-  //     .find('input[type="text"]')
-  //     .simulate('change', {
-  //       target: { name: 'username', value: 'krishankantsinghal' },
-  //     })
-  //   wrapper
-  //     .find('input[type="password"]')
-  //     .simulate('change', {
-  //       target: { name: 'password', value: 'krishankant123' },
-  //     })
-  //   wrapper.find('button').simulate('click')
-  //   expect(wrapper.state('isLogined')).toBe(true)
-  // })
-  // it('login check with wrong data', () => {
-  //   wrapper = shallow(<Login />)
-  //   wrapper
-  //     .find('input[type="text"]')
-  //     .simulate('change', {
-  //       target: { name: 'username', value: 'krishankantsinghal' },
-  //     })
-  //   wrapper
-  //     .find('input[type="password"]')
-  //     .simulate('change', {
-  //       target: { name: 'password', value: 'krishankant1234' },
-  //     })
-  //   wrapper.find('button').simulate('click')
-  //   expect(wrapper.state('isLogined')).toBe(false)
-  // })
-})
+describe('Login page', () => {
+  let wrapper;
+  it('renders', () => {
+    wrapper = shallow(<Login />);
+    expect(wrapper.exists()).toBe(true);
+  });
+  it('email input check', () => {
+    wrapper = shallow(<Login />);
+    wrapper.find('input[name="email"]').simulate('change', {
+      target: { name: 'email', value: 'test@email.com' },
+    });
+    expect(wrapper.state('email')).toEqual('test@email.com');
+  });
+  it('password input check', () => {
+    wrapper = shallow(<Login />);
+    wrapper.find('input[name="password"]').simulate('change', {
+      target: { name: 'password', value: 'password' },
+    });
+    expect(wrapper.state('password')).toEqual('password');
+  });
+  // TODO - Learn how to test props
+  // it('test test', () => {
+  //   const preventDefault = {
+  //     preventDefault: () => {},
+  //   };
+  //   wrapper = shallow(<Login />);
+  //   wrapper.find('input[name="email"]').simulate('change', {
+  //     target: { name: 'email', value: 'test@email.com' },
+  //   });
+  //   wrapper.find('input[name="password"]').simulate('change', {
+  //     target: { name: 'password', value: 'password' },
+  //   });
+  //   const loginButton = wrapper.find('button[name="loginButton"]');
+  //   console.log(loginButton);
+  //   loginButton.simulate('click', preventDefault);
+  // });
+});
