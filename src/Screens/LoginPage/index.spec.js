@@ -22,6 +22,11 @@ describe('Login page', () => {
     });
     expect(wrapper.state('password')).toEqual('password');
   });
+  it('submit button exists', () => {
+    wrapper = shallow(<Login />);
+    const button = wrapper.find('Button');
+    expect(button.exists()).toBe(true);
+  });
   // TODO - Learn how to test props
   // it('test test', () => {
   //   const preventDefault = {

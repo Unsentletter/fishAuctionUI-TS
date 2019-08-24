@@ -29,6 +29,9 @@ describe('NewUser page', () => {
     });
     expect(wrapper.state('username')).toEqual('davemadman');
   });
+  it('submit button exists', () => {
+    wrapper = shallow(<NewUser />);
+    const button = wrapper.find('Button');
+    expect(button.exists()).toBe(true);
+  });
 });
-
-// email, password, username
