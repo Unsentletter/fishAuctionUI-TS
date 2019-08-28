@@ -1,10 +1,10 @@
-import axios from 'axios'
+import axios from 'axios';
 
-import { AUTH_USER } from './types'
+import { AUTH_USER } from './types';
 
 export const signup = (
   { email, password, username },
-  callback
+  callback,
 ) => async dispatch => {
   try {
     const response = await axios.post(
@@ -18,35 +18,35 @@ export const signup = (
         headers: {
           'Content-Type': 'application/json',
         },
-      }
-    )
-    dispatch({ type: AUTH_USER, payload: response.data })
-    localStorage.setItem('token', response.data)
-    callback()
+      },
+    );
+    dispatch({ type: AUTH_USER, payload: response.data });
+    localStorage.setItem('token', response.data);
+    callback();
   } catch (e) {
-    console.log('CREATE USER ERROR', e)
+    console.log('CREATE USER ERROR', e);
   }
-}
+};
 
 export const login = ({ email, password }, callback) => async dispatch => {
   try {
     const response = await axios.post('http://localhost:5000/login', {
       email,
       password,
-    })
-    dispatch({ type: AUTH_USER, payload: response.data })
-    localStorage.setItem('token', response.data)
-    callback()
+    });
+    dispatch({ type: AUTH_USER, payload: response.data });
+    localStorage.setItem('token', response.data);
+    callback();
   } catch (e) {
-    console.log('LOGIN ERROR', e)
+    console.log('LOGIN ERROR', e);
   }
-}
+};
 
 export const signout = () => {
-  localStorage.removeItem('token')
+  localStorage.removeItem('token');
 
   return {
     type: AUTH_USER,
     payload: '',
-  }
-}
+  };
+};

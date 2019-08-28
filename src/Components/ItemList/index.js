@@ -1,25 +1,25 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import moment from 'moment'
+import React from 'react';
+import { connect } from 'react-redux';
+import moment from 'moment';
 
-import { getFishForSale } from '../../Actions/fishSaleActions'
+import { getFishForSale } from '../../Actions/fishSaleActions';
 
-import './index.scss'
+import './index.scss';
 
-import { ItemCard } from '../ItemCard'
+import { ItemCard } from '../ItemCard';
 
 export class ItemList extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   async componentDidMount() {
-    this.props.getFishForSale()
+    this.props.getFishForSale();
   }
 
   render() {
     return (
-      <div className="item-list">
+      <div className='item-list'>
         {this.props.fishForSale.reverse().map((fish, index) => {
           return (
             <ItemCard
@@ -30,20 +30,20 @@ export class ItemList extends React.Component {
               location={fish.location}
               timePosted={moment(fish.timePosted).format('DD/MM/YYYY')}
             />
-          )
+          );
         })}
       </div>
-    )
+    );
   }
 }
 
 function mapStateToProps(state) {
   return {
     fishForSale: state.forSale.fishForSale,
-  }
+  };
 }
 
 export default connect(
   mapStateToProps,
-  { getFishForSale }
-)(ItemList)
+  { getFishForSale },
+)(ItemList);

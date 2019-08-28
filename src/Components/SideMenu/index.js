@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import './index.scss'
+import './index.scss';
 
 const speciesList = [
   'Anabantoids',
@@ -21,18 +21,18 @@ const speciesList = [
   'Snails',
   'Stringrays',
   'Others',
-]
+];
 
 export class SideMenu extends Component {
   render() {
     return (
-      <div className="side-menu">
+      <div className='side-menu'>
         <div>
           {speciesList.map((species, index) => {
-            return <div key={index}>{species}</div>
+            return <div key={index}>{species}</div>;
           })}
         </div>
       </div>
-    )
+    );
   }
 }

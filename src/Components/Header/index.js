@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './index.scss'
+import './index.scss';
 
 export const Header = () => {
   return (
@@ -9,5 +9,5 @@ export const Header = () => {
         <div className='header-text'>FISH AUCTION</div>
       </nav>
     </div>
-  )
-}
+  );
+};
